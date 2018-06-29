@@ -1,0 +1,55 @@
+{extend name="base/base" /}
+{block name="content"}
+<title>添加导航栏</title>
+</head>
+<body>
+<div class="page-container">
+    <form class="form form-horizontal" id="form-banner-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">图片：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="file" class="input-text" value="" placeholder="" id="file" name="image">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-9 col-offset-3">
+                <input onClick="banneradd()" class="btn btn-primary radius" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</div>
+
+{/block}
+{block name="js"}
+<script type="text/javascript" src="__STATIC____ADMIN__lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__STATIC____ADMIN__lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC____ADMIN__lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC____ADMIN__lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+
+    function banneradd(){
+        var formData = new FormData($('form')[0]);
+
+        $.ajax({
+            url:'{:url(\'Banner/setBannerAdd\')}',
+            type:'post',
+            dataType:'json',
+            data: formData,
+            contentType: false,
+            processData: false,
+
+            success: function(data){
+                if(data.code==1){
+                    layer.msg(data.message,{icon:1,time:1000},function(){
+                        parent.location.reload()
+                    });
+                }else{
+                    layer.msg(data.message,{icon:2,time:1000});
+                }
+            }
+        })
+    }
+
+</script>
+{/block}
