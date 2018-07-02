@@ -1,0 +1,63 @@
+{extend name="base/base" /}
+{block name="title"}添加管理员{/block}
+{block name="content"}
+<article class="page-container">
+	<form class="form form-horizontal">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">上级权限：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="pid" size="1">
+				<option value="0">超级管理员</option>
+			</select>
+			</span> </div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="" name="name">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>控制器：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="password" class="input-text" autocomplete="off" value=""name="controller">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>方法：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="password" class="input-text" autocomplete="off" name="action">
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="button" onclick="insert();" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+{/block}
+
+{block name="js"}
+<script type="text/javascript">
+	function insert(){
+        var data = $("form").serialize();
+
+        $.ajax({
+			url : "{:url('create')}",
+			type : 'post',
+			dataType : 'json',
+			data : data,
+			success : function(info){
+			    if( info.code == 1 ){
+			        layer.msg(info.msg,{icon:1,time:1000},function(){
+			            parent.location.reload();
+					});
+				}else{
+			        layer.msg(info.msg,{icon:2,time:1000});
+				}
+			}
+		});
+	}
+</script> 
+{/block}

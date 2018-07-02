@@ -10,4 +10,14 @@ class Privilege extends BaseController
 	{
 		return $this->fetch();
 	}
+
+	function create()
+	{
+		return $this->fetch();
+	}
+
+	function save()
+	{
+		
+	}
 }
