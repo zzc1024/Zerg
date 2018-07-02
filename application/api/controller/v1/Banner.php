@@ -9,7 +9,20 @@
 namespace app\api\controller\v1;
 
 
-class Banner
-{
+use app\api\controller\BaseController;
+use app\api\model\Banner as BannerModel;
 
+class Banner extends BaseController
+{
+    /*
+     * 获取展示banner图url
+     * @url /banner
+     * @http get
+     * @return array banner item , code 200
+     */
+    public function getBanner()
+    {
+        $banner = BannerModel::setBannerGet();
+        return json_encode($banner);
+    }
 }

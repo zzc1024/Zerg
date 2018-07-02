@@ -11,5 +11,5 @@ namespace app\lib\enum;
 
 class ImageUrl
 {
-
+    const DOMAINURL = 'http://tp5.com';
 }

@@ -9,7 +9,9 @@
 namespace app\api\controller;
 
 
-class BaseController
+use think\Controller;
+
+class BaseController extends Controller
 {
 
 }

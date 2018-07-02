@@ -9,7 +9,7 @@
 namespace app\api\model;
 
 
-class Image
+class Image extends BaseModel
 {
-
+    protected $hidden = ['id'];
 }

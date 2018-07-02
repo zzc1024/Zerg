@@ -9,7 +9,9 @@
 namespace app\api\model;
 
 
-class BaseModel
+use think\Model;
+
+class BaseModel extends Model
 {
 
 }
